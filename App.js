@@ -25,8 +25,16 @@ export default class App extends Component {
               settings: {screen: SettingsScreen}
             })
           }
+        }, {
+          // for android
+          tabBarPosition: 'bottom',
+          lazy: true // Each screen will not mount/load until user clicks on them
         })
       }
+    }, {
+      // for android
+      tabBarPosition: 'bottom',
+      lazy: true // Each screen will not mount/load until user clicks on them
     });
 
     return (
