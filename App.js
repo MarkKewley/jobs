@@ -36,6 +36,9 @@ export default class App extends Component {
     }, {
       // for android
       tabBarPosition: 'bottom',
+      navigationOptions: {
+        tabBarVisible: false
+      },
       lazy: true // Each screen will not mount/load until user clicks on them
     });
 
