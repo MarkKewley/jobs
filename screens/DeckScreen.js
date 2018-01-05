@@ -53,7 +53,7 @@ class DeckScreen extends Component {
 
   render () {
     return (
-      <View>
+      <View style={styles.containerStyle}>
         <Swipe
           data={this.props.jobs}
           renderCard={this.renderJob}
@@ -71,6 +71,9 @@ const styles = {
     flexDirection: 'row',
     justifyContent: 'space-around',
     marginBottom: 10
+  },
+  containerStyle: {
+    marginTop: 20
   }
 };
 
