@@ -10,7 +10,8 @@ class Swipe extends Component {
   static defaultProps = {
     onSwipeRight: () => {},
     onSwipeLeft: () => {},
-    renderNoMoreCards: () => {}
+    renderNoMoreCards: () => {},
+    keyProp: 'id'
   };
 
   constructor (props) {
@@ -107,7 +108,7 @@ class Swipe extends Component {
       if (index === topCardIndex) {
         return (
           <Animated.View
-            key={this.props.getKeyFromCardItem(item)}
+            key={item[this.props.keyProp]}
             style={[this.getCardStyle(), styles.cardStyle]}
             {...this.state.panResponder.panHandlers}>
             {renderCard(item)}
@@ -122,7 +123,7 @@ class Swipe extends Component {
       // is equal to the topCardIndex as an Animated.View we will see flashing images since
       // this causes react to re-fetch the image.
       return (
-        <Animated.View key={item.id} style={[styles.cardStyle, {top: (10 * (index - topCardIndex)), zIndex: -index}]}>
+        <Animated.View key={item[this.props.keyProp]} style={[styles.cardStyle, {top: (10 * (index - topCardIndex)), zIndex: -index}]}>
           {renderCard(item)}
         </Animated.View>
       );
