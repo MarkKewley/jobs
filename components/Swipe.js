@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, Dimensions, LayoutAnimation, PanResponder, UIManager, View } from 'react-native';
+import { Animated, Dimensions, LayoutAnimation, PanResponder, Platform, UIManager, View } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 // 1/4 of the width of the screen
@@ -103,7 +103,7 @@ class Swipe extends Component {
       return renderNoMoreCards();
     }
 
-    return data.map((item, index) => {
+    const deck = data.map((item, index) => {
       if (index === topCardIndex) {
         return (
           <Animated.View
@@ -122,11 +122,13 @@ class Swipe extends Component {
       // is equal to the topCardIndex as an Animated.View we will see flashing images since
       // this causes react to re-fetch the image.
       return (
-        <Animated.View key={item.id} style={[styles.cardStyle, {top: (10 * (index - topCardIndex))}]}>
+        <Animated.View key={item.id} style={[styles.cardStyle, {top: (10 * (index - topCardIndex)), zIndex: -index}]}>
           {renderCard(item)}
         </Animated.View>
       );
-    }).reverse();
+    });
+
+    return Platform.OS === 'android' ? deck : deck.reverse();
   }
 
   render () {

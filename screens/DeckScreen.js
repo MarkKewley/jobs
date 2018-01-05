@@ -17,6 +17,7 @@ class DeckScreen extends Component {
       longitudeDelta: 0.045,
       latitudeDelta: 0.02
     };
+
     return (
       <Card title={job.jobtitle}>
         <View style={{height: 300}}>
